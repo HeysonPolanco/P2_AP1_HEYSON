@@ -1,10 +1,16 @@
+using Microsoft.EntityFrameworkCore;
 using P2_AP1_Heyson.Components;
+using P2_AP1_Heyson.DAL;
+using P2_AP1_Heyson.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+var conStr = builder.Configuration.GetConnectionString("ConStr");
+builder.Services.AddDbContextFactory<Context>(o => o.UseSqlite(conStr));
 
 var app = builder.Build();
 
