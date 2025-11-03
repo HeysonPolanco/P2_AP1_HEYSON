@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using P2_AP1_Heyson.Components;
 using P2_AP1_Heyson.DAL;
-using P2_AP1_Heyson.Models;
+using P2_AP1_Heyson.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +11,8 @@ builder.Services.AddRazorComponents()
 
 var conStr = builder.Configuration.GetConnectionString("ConStr");
 builder.Services.AddDbContextFactory<Context>(o => o.UseSqlite(conStr));
+
+builder.Services.AddScoped<RegistroServices>();
 
 var app = builder.Build();
 
